@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leader Tread Moçambique | Pneus, Jantes & Serviços Automóveis</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #FFCC00; /* Amarelo Leader Tread */
+            --primary-hover: #e6b800;
+            --dark-bg: #111111;
+            --dark-card: #1a1a1a;
+            --dark-accent: #242424;
+            --light-text: #ffffff;
+            --muted-text: #b0b0b0;
+            --border-color: #333333;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- CLASSES DE ANIMAÇÃO AO FAZER SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- BOTÃO FLUTUANTE DO WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsapp-pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #20ba5a;
+            color: #FFF;
+            box-shadow: 0px 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float .badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #ff3b30;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--dark-bg);
+        }
+
+        @keyframes whatsapp-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Top Header Contact Bar */
+        .top-bar {
+            background: #000;
+            color: var(--muted-text);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .top-bar-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .top-bar i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        /* Navbar Sticky */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(17, 17, 17, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-cta {
+            background: var(--primary);
+            color: #000;
+            padding: 12px 24px;
+            font-weight: 800;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 130px 5% 100px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600') center/cover no-repeat;
+            text-align: center;
+        }
+
+        .hero-badge {
+            background: rgba(255, 204, 0, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted-text);
+            max-width: 750px;
+            margin: 0 auto 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 24px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* Carrossel Infinito de Marcas */
+        .brands-section {
+            background: #000;
+            padding: 25px 0;
+            overflow: hidden;
+            border-top: 2px solid var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brands-slider {
+            display: flex;
+            width: 200%;
+            animation: scroll 22s linear infinite;
+        }
+
+        .brands-slider:hover {
+            animation-play-state: paused;
+        }
+
+        .brand-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--muted-text);
+            white-space: nowrap;
+            padding: 0 45px;
+            gap: 12px;
+            transition: color 0.3s;
+        }
+
+        .brand-item i {
+            color: var(--primary);
+        }
+
+        .brand-item:hover {
+            color: #fff;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Estrutura Geral */
+        .section {
+            padding: 90px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--muted-text);
+            font-size: 1rem;
+        }
+
+        .divider {
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Layout Grids */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cards Gerais */
+        .card {
+            background: var(--dark-card);
+            padding: 35px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 25px rgba(255, 204, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        /* SECÇÃO DE SERVIÇOS COM IMAGENS */
+        .service-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+
+        .service-img-wrapper {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .service-badge-icon {
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            background: var(--primary);
+            color: #000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        .service-content {
+            padding: 30px 25px 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .service-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .service-body p {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            margin-bottom: 15px;
+        }
+
+        .service-body ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-body ul li {
+            font-size: 0.88rem;
+            color: var(--muted-text);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-body ul li i {
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+        .service-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .service-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* GALERIA DE FOTOS */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 260px;
+            border: 1px solid var(--border-color);
+            background: var(--dark-card);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        /* AVALIAÇÕES DOS CLIENTES */
+        .testimonial-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+        }
+
+        .testimonial-card::before {
+            content: '“';
+            font-size: 5rem;
+            color: rgba(255, 204, 0, 0.15);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .client-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Lojas */
+        .location-card {
+            background: var(--dark-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .location-card:hover {
+            border-color: var(--primary);
+        }
+
+        .location-header {
+            background: var(--dark-accent);
+            padding: 20px 25px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .location-header i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .location-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            margin-top: 4px;
+            width: 18px;
+        }
+
+        /* Form */
+        .contact-box {
+            background: var(--dark-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 60px 5% 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--muted-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .top-bar { flex-direction: column; gap: 8px; text-align: center; }
+            .top-bar-info { flex-direction: column; gap: 5px; }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/258822538752?text=Ol%C3%A1!%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20as%20jantes%20e%20servi%C3%A7os%20da%20Leader%20Tread." class="whatsapp-float" target="_blank" title="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="badge">1</span>
+    </a>
+
+    <!-- 1. TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-info">
+            <span><i class="fa-solid fa-location-dot"></i> Sucursais: Maputo, Matola, Chiango & Zimpeto</span>
+            <span><i class="fa-solid fa-clock"></i> Seg - Sáb: 07:30 - 17:00</span>
+        </div>
+        <div>
+            <span><i class="fa-solid fa-phone"></i> Linha de Apoio: (+258) 822538752</span>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-truck-monster" style="font-size: 2.2rem; color: var(--primary);"></i>
+            <div class="logo-text">
+                LEADER TREAD
+                <span>LEADING THE WAY</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="#lojas">Nossas Lojas</a></li>
+        </ul>
+        <a href="#contacto" class="btn-cta">Solicitar Cotação</a>
+    </nav>
+
+    <!-- 3. HERO SECTION COM ANIMAÇÃO ENTRADA -->
+    <section class="hero">
+        <span class="hero-badge reveal"><i class="fa-solid fa-star"></i> ESPECIALISTAS EM $4\times 4$ EM MOÇAMBIQUE</span>
+        <h1 class="reveal">Equipe o seu <span>4x4 com a Máxima Performance</span></h1>
+        <p class="reveal">Jantes Especiais de 16", 17", 18" e 20" polegadas. Distribuição oficial e assistência técnica especializada nas nossas 4 lojas em Maputo e Matola.</p>
+        <div class="hero-btns reveal">
+            <a href="#produtos" class="btn-cta">Ver Catálogo de Jantes</a>
+            <a href="#servicos" class="btn-outline">Ver Nossos Serviços</a>
+        </div>
+    </section>
+
+    <!-- 4. CARROSSEL INFINITO DE MARCAS -->
+    <div class="brands-section">
+        <div class="brands-slider">
+            <div class="brand-item"><i class="fa-solid fa-shield-halved"></i> BLACK RHINO HARD ALLOYS</div>
+            <div class="brand-item"><i class="fa-solid fa-car-side"></i> TOYOTA</div>
+            <div class="brand-item"><i class="fa-solid fa-truck-pickup"></i> FORD</div>
+            <div class="brand-item"><i class="fa-solid fa-car"></i> NISSAN</div>
+            <div class="brand-item"><i class="fa-solid fa-mountain"></i> JEEP</div>
+            <div class="brand-item"><i class="fa-solid fa-compact-disc"></i> LEADER TREAD</div>
+
+            <div class="brand-item"><i class="fa-solid fa-shield-halved"></i> BLACK RHINO HARD ALLOYS</div>
+            <div class="brand-item"><i class="fa-solid fa-car-side"></i> TOYOTA</div>
+            <div class="brand-item"><i class="fa-solid fa-truck-pickup"></i> FORD</div>
+            <div class="brand-item"><i class="fa-solid fa-car"></i> NISSAN</div>
+            <div class="brand-item"><i class="fa-solid fa-mountain"></i> JEEP</div>
+            <div class="brand-item"><i class="fa-solid fa-compact-disc"></i> LEADER TREAD</div>
+        </div>
+    </div>
+
+    <!-- 5. PRODUTOS -->
+    <section class="section" id="produtos">
+        <div class="section-header reveal">
+            <h2 class="section-title">Especialistas em Jantes 4x4</h2>
+            <p class="section-subtitle">Disponíveis em 16", 17", 18" e 20" polegadas para todos os modelos de pickups e SUVs.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid-3">
+            <div class="card reveal-left">
+                <div class="card-icon"><i class="fa-solid fa-circle-notch"></i></div>
+                <h3>Jantes 16" & 17" Polegadas</h3>
+                <p>Perfeitas para máxima absorção de impacto off-road e furação reforçada de 6 furos.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-icon"><i class="fa-solid fa-dharmachakra"></i></div>
+                <h3>Jantes 18" & 20" Polegadas</h3>
+                <p>Estética agressiva e estabilidade de condução superior para SUVs e pickups modernas.</p>
+            </div>
+
+            <div class="card reveal-right">
+                <div class="card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                <h3>Black Rhino Hard Alloys</h3>
+                <p>Importação oficial de jantes ultrarresistentes preparadas para terrenos difíceis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SECÇÃO COMPLETA DE SERVIÇOS TÉCNICOS COM IMAGENS ILUSTRATIVAS -->
+    <section class="section" id="servicos" style="background: var(--dark-accent);">
+        <div class="section-header reveal">
+            <h2 class="section-title">Serviços Técnicos & Oficina Auto</h2>
+            <p class="section-subtitle">A nossa rede de oficinas conta com equipamento computadorizado de alta precisão para o seu veículo.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid-3">
+            <!-- Serviço 1: Alinhamento 3D -->
+            <div class="service-card reveal-left">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800" alt="Alinhamento 3D Computadorizado">
+                    <div class="service-badge-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Alinhamento 3D Computadorizado</h3>
+                        <p>Medição a laser das rodas para corrigir desvios na direcção e prevenir o desgaste irregular dos pneus.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Ajuste milimétrico de convergência</li>
+                            <li><i class="fa-solid fa-check"></i> Correção de ângulo de camber e caster</li>
+                            <li><i class="fa-solid fa-check"></i> Diagnóstico por sensores ópticos</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Agendar Alinhamento</a>
+                </div>
+            </div>
+
+            <!-- Serviço 2: Calibragem -->
+            <div class="service-card reveal">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=800" alt="Calibragem e Equilíbrio Dinâmico">
+                    <div class="service-badge-icon"><i class="fa-solid fa-rotate"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Calibragem & Equilíbrio Dinâmico</h3>
+                        <p>Elimina as vibrações no volante a altas velocidades, garantindo uma condução suave e segura.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Calibragem com pesos de precisão</li>
+                            <li><i class="fa-solid fa-check"></i> Teste de rotação para jantes $4\times 4$</li>
+                            <li><i class="fa-solid fa-check"></i> Inspecção de empeno de jante</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Agendar Calibragem</a>
+                </div>
+            </div>
+
+            <!-- Serviço 3: Montagem -->
+            <div class="service-card reveal-right">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800" alt="Montagem de Pneus e Jantes">
+                    <div class="service-badge-icon"><i class="fa-solid fa-wrench"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Montagem de Pneus & Jantes</h3>
+                        <p>Equipamentos pneumáticos de última geração que evitam riscos no acabamento das jantes especiais.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Substituição de válvulas de ar</li>
+                            <li><i class="fa-solid fa-check"></i> Apertos com chave dinamométrica</li>
+                            <li><i class="fa-solid fa-check"></i> Troca e rotação de pneus</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Solicitar Montagem</a>
+                </div>
+            </div>
+
+            <!-- Serviço 4: Revisão Rápida -->
+            <div class="service-card reveal-left">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=800" alt="Revisão Rápida e Manutenção">
+                    <div class="service-badge-icon"><i class="fa-solid fa-oil-can"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Revisão Rápida & Manutenção</h3>
+                        <p>Serviços essenciais para manter o desempenho do seu motor e a longevidade dos componentes.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Troca de óleo do motor e filtros</li>
+                            <li><i class="fa-solid fa-check"></i> Inspecção de fluídos de travão</li>
+                            <li><i class="fa-solid fa-check"></i> Verificação de bateria e luzes</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Agendar Revisão</a>
+                </div>
+            </div>
+
+            <!-- Serviço 5: Suspensão -->
+            <div class="service-card reveal">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800" alt="Diagnóstico de Suspensão">
+                    <div class="service-badge-icon"><i class="fa-solid fa-truck-monster"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Diagnóstico de Suspensão</h3>
+                        <p>Avaliamos o estado do sistema de amortecimento preparado para lidar com estradas difíceis.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Teste de amortecedores e molas</li>
+                            <li><i class="fa-solid fa-check"></i> Verificação de buchas e braços</li>
+                            <li><i class="fa-solid fa-check"></i> Inspecção de terminais de direcção</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Verificar Suspensão</a>
+                </div>
+            </div>
+
+            <!-- Serviço 6: Vulcanização e Reparação -->
+            <div class="service-card reveal-right">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=800" alt="Reparação de Pneus e Vulcanização">
+                    <div class="service-badge-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                </div>
+                <div class="service-content">
+                    <div class="service-body">
+                        <h3>Reparação de Pneus & Vulcanização</h3>
+                        <p>Consertos rápidos e seguros em pneus perfurados para que possa seguir viagem com tranquilidade.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Reparação interna por vulcanização</li>
+                            <li><i class="fa-solid fa-check"></i> Verificação de pressão e estanqueidade</li>
+                            <li><i class="fa-solid fa-check"></i> Atendimento nas nossas 4 oficinas</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="service-btn">Reparar Pneu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GALERIA DE FOTOS -->
+    <section class="section" id="galeria">
+        <div class="section-header reveal">
+            <h2 class="section-title">Galeria de Produtos & Oficinas</h2>
+            <p class="section-subtitle">Confira o nosso stock e a infraestrutura das nossas sucursais em Moçambique.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item reveal-left">
+                <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=800" alt="Jantes Black Rhino">
+                <div class="gallery-overlay">
+                    <h4>Stock Black Rhino Alloys</h4>
+                    <p>Jantes reforçadas para Toyota e Ford</p>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800" alt="Oficina Leader Tread">
+                <div class="gallery-overlay">
+                    <h4>Loja Zimpeto & Oficinas</h4>
+                    <p>Equipamentos modernos de alinhamento</p>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=800" alt="Jantes em Mostruário">
+                <div class="gallery-overlay">
+                    <h4>Jantes $4\times 4$ de 17" com 6 Furos</h4>
+                    <p>Variedade de designs com dish e concavidade</p>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal-right">
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800" alt="Instalação de Pneus">
+                <div class="gallery-overlay">
+                    <h4>Montagem e Calibragem</h4>
+                    <p>Assistência rápida e profissional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. AVALIAÇÕES DOS CLIENTES -->
+    <section class="section" id="avaliacoes" style="background: var(--dark-accent);">
+        <div class="section-header reveal">
+            <h2 class="section-title">O Que Dizem Os Nossos Clientes</h2>
+            <p class="section-subtitle">A satisfação dos condutores $4\times 4$ em Maputo, Matola, Chiango e Zimpeto.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid-3">
+            <div class="testimonial-card reveal-left">
+                <div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Comprei um jogo de jantes 17" com 6 furos para a minha Hilux na sucursal do Zimpeto. Atendimento excelente no balcão e montagem super rápida!"</p>
+                </div>
+                <div class="client-info">
+                    <div class="client-avatar">IK</div>
+                    <div class="client-details">
+                        <h4>Issa Kadir</h4>
+                        <span>Cliente Zimpeto</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal">
+                <div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Excelente variedade de Black Rhino Hard Alloys. O alinhamento 3D na loja da EN4 Matola deixou o meu carro sem nenhuma vibração na estrada."</p>
+                </div>
+                <div class="client-info">
+                    <div class="client-avatar">AM</div>
+                    <div class="client-details">
+                        <h4>Amit Maganlal</h4>
+                        <span>Cliente Matola</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal-right">
+                <div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"A melhor loja de pneus e jantes em Maputo. Preços justos, produtos originais e várias opções de sucursais para quem anda na cidade."</p>
+                </div>
+                <div class="client-info">
+                    <div class="client-avatar">CM</div>
+                    <div class="client-details">
+                        <h4>Carlos Mabunda</h4>
+                        <span>Cliente Maputo Sede</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. SUCURSAIS -->
+    <section class="section" id="lojas">
+        <div class="section-header reveal">
+            <h2 class="section-title">Nossas Lojas e Contactos</h2>
+            <p class="section-subtitle">Visite a sucursal Leader Tread mais próxima de si.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid-2">
+            <!-- Maputo (Sede) -->
+            <div class="location-card reveal-left">
+                <div class="location-header">
+                    <i class="fa-solid fa-store"></i>
+                    <div>
+                        <h3>Leader Tread Maputo (Sede)</h3>
+                        <small style="color: var(--primary);">Atendimento Central</small>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="info-item">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>Av. Karl Marx, N.º 1704, R/C - Maputo, Moçambique</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>(+258) 822538752 / (+258) 827639739</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zimpeto -->
+            <div class="location-card reveal-right">
+                <div class="location-header">
+                    <i class="fa-solid fa-store"></i>
+                    <div>
+                        <h3>Leader Tread Zimpeto</h3>
+                        <small style="color: var(--primary);">Nova Loja Aberta</small>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="info-item">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>Av. de Moçambique, Talhão 1 e 2, Parcela 657 Bairro - Zimpeto, Moçambique</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>(+258) 849820114 / (+258) 833648259</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matola -->
+            <div class="location-card reveal-left">
+                <div class="location-header">
+                    <i class="fa-solid fa-store"></i>
+                    <div>
+                        <h3>Leader Tread Matola</h3>
+                        <small style="color: var(--primary);">EN4 Fomento</small>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="info-item">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>Bairro do Fomento EN4, Parcela 730, Talhão 39 - Matola, Moçambique</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>(+258) 824098309</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chiango -->
+            <div class="location-card reveal-right">
+                <div class="location-header">
+                    <i class="fa-solid fa-store"></i>
+                    <div>
+                        <h3>Leader Tread Chiango</h3>
+                        <small style="color: var(--primary);">Albazine</small>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="info-item">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>Bairro Albazine, Parcela 5617, Talhão 701 - Chiango, Moçambique</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>(+258) 860791203 / (+258) 852535650</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CONTACTO -->
+    <section class="section" id="contacto" style="background: var(--dark-accent);">
+        <div class="section-header reveal">
+            <h2 class="section-title">Peça uma Cotação Rápida</h2>
+            <p class="section-subtitle">Preencha os seus dados para receber valores de jantes ou agendar um serviço.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div style="max-width: 650px; margin: 0 auto;" class="reveal">
+            <form class="contact-box" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
+                <div class="form-group">
+                    <label>Seu Nome Completo</label>
+                    <input type="text" class="form-control" placeholder="Ex: João Mabunda" required>
+                </div>
+                <div class="form-group">
+                    <label>Contacto Telefónico / WhatsApp</label>
+                    <input type="tel" class="form-control" placeholder="Ex: +258 84 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label>Modelo do Veículo</label>
+                    <input type="text" class="form-control" placeholder="Ex: Toyota Hilux / Ford Ranger" required>
+                </div>
+                <div class="form-group">
+                    <label>Serviço ou Produto Pretendido</label>
+                    <select class="form-control">
+                        <option>Alinhamento e Calibragem 3D</option>
+                        <option>Montagem de Pneus/Jantes</option>
+                        <option>Revisão Rápida / Óleo</option>
+                        <option>Diagnóstico de Suspensão</option>
+                        <option>Jantes 16" / 17" / 18" / 20"</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-cta" style="width: 100%;">Enviar Pedido</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 11. FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 15px;">
+                    <i class="fa-solid fa-truck-monster" style="font-size: 1.8rem; color: var(--primary);"></i>
+                    <div class="logo-text" style="font-size: 1.2rem;">LEADER TREAD</div>
+                </a>
+                <p>Especialistas em jantes, pneus e serviços automotivos em Moçambique. "Leading the way"</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul class="footer-links">
+                    <li><a href="#produtos">Jantes 4x4</a></li>
+                    <li><a href="#servicos">Serviços Auto</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#lojas">Sucursais</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Marcas Principais</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Black Rhino Hard Alloys</a></li>
+                    <li><a href="#">Toyota</a></li>
+                    <li><a href="#">Ford</a></li>
+                    <li><a href="#">Nissan</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Lojas em Moçambique</h4>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Maputo (Av. Karl Marx)</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Matola (EN4 Fomento)</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Chiango (Albazine)</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Zimpeto (Av. de Moçambique)</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Leader Tread Moçambique. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE ANIMAÇÃO INTERATIVA AO FAZER SCROLL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
